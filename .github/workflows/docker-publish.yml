@@ -1,5 +1,10 @@
 name: Build & Publish (Docker Hub)
 
+
+concurrency:
+  group: docker-publish-${{ github.ref }}
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/heads/') }}
+
 on:
   push:
     branches: [ "main" ]
